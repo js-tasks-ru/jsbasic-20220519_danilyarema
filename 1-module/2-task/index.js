@@ -11,7 +11,7 @@ function print(text) {
  * имя не пустое, без пробелов, минимум 4 символа.
  */
 function isValid(name) {
-  if ((name.len > 3 && name !== undefined && (!name.includes(' ') ))) return true   
+  if ((name.length > 3 && name !== undefined && (!name.includes(' ') ))) return true   
 }
 
 function sayHello() {
