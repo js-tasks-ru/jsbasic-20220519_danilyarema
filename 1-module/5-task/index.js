@@ -22,6 +22,6 @@ truncate('Всем привет!', 20) === 'Всем привет!';
 
 
 function truncate(str, maxlength) {
-  let answer = (str.length > 20) ? str.slice(0,20) + '…' : str ;
-  return answer
+  let answer = (str.length > maxlength) ? str.slice(0,(maxlength-1)) + '…' : str ;
+ return answer
 }
