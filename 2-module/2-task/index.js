@@ -1,4 +1,4 @@
 function isEmpty(obj) {
-  Object.keys(obj).length === 0
+  return Object.keys(obj).length === 0
 }
 
