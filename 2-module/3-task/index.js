@@ -14,4 +14,4 @@ calculator.sum = function(){
 };
 
 // НЕ УДАЛЯТЬ СТРОКУ, НУЖНА ДЛЯ ПРОВЕРКИ
-window.calculator = calcuator; // делает ваш калькулятор доступным глобально
+window.calculator = calculator; // делает ваш калькулятор доступным глобально
