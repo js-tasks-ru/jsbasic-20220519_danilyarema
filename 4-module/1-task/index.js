@@ -1,9 +1,5 @@
 function makeFriendsList(friends) {
-  let list = ''
-  for (let obj of friends)
-    list += '<li>' + obj.firstName + ' ' + obj.lastName + '</li>'
-  list = ('<ul>' + list + '</ul>')
-  console.log(list)
-  //document.head.childNodes[1].insertAdjacentHTML('afterEnd', list)
-  document.body.innerHTML = list
+  let ul = document.createElement('ul')
+  ul.innerHTML = friends.map(friend => `<li>${Object.values(friend).join(' ')}</li>`).join('');
+  return ul;
 }
