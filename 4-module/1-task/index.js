@@ -4,5 +4,6 @@ function makeFriendsList(friends) {
     list += '<li>' + obj.firstName + ' ' + obj.lastName + '</li>'
   list = ('<ul>' + list + '</ul>')
   console.log(list)
-  document.head.childNodes[1].insertAdjacentHTML('afterEnd', list)
+  //document.head.childNodes[1].insertAdjacentHTML('afterEnd', list)
+  document.body.innerHTML = list
 }
