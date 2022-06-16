@@ -3,7 +3,11 @@ import createElement from '../../assets/lib/create-element.js'
 export default class ProductCard {
   constructor(product) {
     this.elem = createDOM(product)
+    this.product = product
   }
+
+
+
 }
 function createDOM(elemObj){
     let DOM = createElement(
@@ -20,15 +24,12 @@ function createDOM(elemObj){
             </div>
           </div>`)
                               
-          let button = DOM.querySelector(".card__button");
-          //console.log(button.className)
-          button.addEventListener('click',  (event) => {
-          button.dispatchEvent(new CustomEvent("product-add"),{
-          detail : elemObj.id,
-          bubbles : true
+          DOM.querySelector(".card__button").addEventListener('click',  (event) => { 
+             event.target.dispatchEvent(new CustomEvent("product-add",{
+             detail : elemObj.id,
+             bubbles : true    
+           }))
           })
-          })
-         // console.log(elemObj.id)
     return DOM                         
   }
 
