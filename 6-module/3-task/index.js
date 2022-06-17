@@ -114,7 +114,7 @@ export default class Carousel {
       button.addEventListener('click',  (event) => { 
         console.log(button)
         event.target.dispatchEvent(new CustomEvent("product-add",{
-        detail : button.closest('.carousel__slide').dataset.id,
+        detail : button.closest('.carousel__slide').dataset,//.id,
         bubbles : true    
       }))
      })
