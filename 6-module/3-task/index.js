@@ -4,7 +4,7 @@ export default class Carousel {
  
   constructor(slides) {
     this.elem = this.setUpStatic(slides);
-    this.elem.addEventListener('click',(event) => this.elem.offsetWidth)
+   // this.elem.addEventListener('click',(event) => this.elem.offsetWidth)
   }
 
   makeCarousel(user) {
@@ -41,13 +41,16 @@ export default class Carousel {
 
   setUpStatic(slides){
     const slider = createElement(this.makeHTML(slides));
+
     const buttons = slider.querySelectorAll("button")
 
     const right = slider.querySelector('.carousel__arrow_right')
     const left = slider.querySelector('.carousel__arrow_left')
     const inner = slider.querySelector('.carousel__inner')
     const maxlen = slider.querySelectorAll('.carousel__slide').length
+
     let pos = 0 //счётчик
+
     switch(pos){
       case 0: left.style.display = 'none';
       right.style.display = '';
@@ -92,6 +95,7 @@ export default class Carousel {
     let translateDist =  this.offsetWidth * pos
     inner.style.transform = 'translateX(-' + translateDist + 'px)' 
     console.log(pos, this.offsetWidth)
+
     switch(pos){
       case 0: left.style.display = 'none';
       right.style.display = '';
@@ -108,19 +112,18 @@ export default class Carousel {
 
     for (const button of buttons){
       button.addEventListener('click',  (event) => { 
+        console.log(button)
         event.target.dispatchEvent(new CustomEvent("product-add",{
         detail : button.closest('.carousel__slide').dataset.id,
         bubbles : true    
       }))
      })
-   
+    }
   return slider; 
-  }  
+    
 }
 
   get offsetWidth() {
     return this.elem.offsetWidth
   };
-
-
 }
