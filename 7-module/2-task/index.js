@@ -3,22 +3,34 @@ import createElement from '../../assets/lib/create-element.js';
 export default class Modal {
 
   constructor() { 
+    this.template = createElement(`<div class="modal">
+    <!--Прозрачная подложка перекрывающая интерфейс-->
+    <div class="modal__overlay"></div>
+  
+    <div class="modal__inner">
+      <div class="modal__header">
+        <!--Кнопка закрытия модального окна-->
+        <button type="button" class="modal__close">
+          <img src="/assets/images/icons/cross-icon.svg" alt="close-icon" />
+        </button>
+  
+        <h3 class="modal__title">
+        </h3>
+      </div>
+  
+      <div class="modal__body">
+      </div>
+    </div>
+  
+  </div>`)
   }
 
   open(){
-    this.tempest = this.createHTML()
-    this.elem = createElement(this.tempest)
-    const element = this.elem.querySelector('.modal__body');
-    const buttonClose = this.elem.querySelector('.modal__close')
+   
+    const buttonClose = this.template.querySelector('.modal__close')
 
     document.body.classList.add(`is-modal-open`)
-
-    while (element.firstChild) {
-      element.removeChild(element.firstChild);
-    } //удаление всего в body
-
-    element.append(this.modalBody) 
-
+ 
     buttonClose.addEventListener('click', (event) => this.close())
 
 
@@ -38,7 +50,7 @@ export default class Modal {
 
     document.body.addEventListener('keydown', handlerESC) 
     
-    return document.body.append(this.elem)
+    return document.body.append(this.template)
   }
 
   close() {
@@ -51,36 +63,42 @@ export default class Modal {
   }
 
   setTitle(modalTitle){
-    return this.modalTitle = modalTitle
+    this.template.querySelector('.modal__title').innerHTML = `\n ${modalTitle} \n`//console.log(this.template.querySelector('.modal__title').innerHTML)
   }
 
   setBody(node){
-    return this.modalBody = node
+    const element = this.template.querySelector('.modal__body');
+
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    } //удаление всего в body
+
+    element.append(node)
   }
 
-  createHTML(){
-    return `<div class="modal">
-    <!--Прозрачная подложка перекрывающая интерфейс-->
-    <div class="modal__overlay"></div>
+  // createHTML(){
+  //   return `<div class="modal">
+  //   <!--Прозрачная подложка перекрывающая интерфейс-->
+  //   <div class="modal__overlay"></div>
 
-    <div class="modal__inner">
-      <div class="modal__header">
-        <!--Кнопка закрытия модального окна-->
-        <button type="button" class="modal__close">
-          <img src="/assets/images/icons/cross-icon.svg" alt="close-icon" />
-        </button>
+  //   <div class="modal__inner">
+  //     <div class="modal__header">
+  //       <!--Кнопка закрытия модального окна-->
+  //       <button type="button" class="modal__close">
+  //         <img src="/assets/images/icons/cross-icon.svg" alt="close-icon" />
+  //       </button>
 
-        <h3 class="modal__title">
-          ${this.modalTitle}
-        </h3>
-      </div>
+  //       <h3 class="modal__title">
+  //         ${this.modalTitle}
+  //       </h3>
+  //     </div>
 
-      <div class="modal__body">
-      </div>
-    </div>
+  //     <div class="modal__body">
+  //     </div>
+  //   </div>
 
-  </div>`
-  }
+  // </div>`
+  // }
   
  
 
