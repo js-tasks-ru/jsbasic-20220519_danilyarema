@@ -22,20 +22,6 @@ export default class Modal {
 
     buttonClose.addEventListener('click', (event) => this.close())
 
-    document.body.querySelector('.container').addEventListener('click', () => {
-      
-      const onkeydown = (event) => {
-        //if (event.code == 'Escape') {
-               //this.buttonClose()
-               console.log('BUTTONEvent')
-               //document.body.removeEventListener('keydown', onkeydown()) 
-            // }
-
-      }
-
-      document.addEventListener('keydown', onkeydown());
-
-    })
 
     let handlerESC = function(event){
       if (event.code == 'Escape') {
