@@ -78,6 +78,10 @@ export default class Modal {
     } //удаление всего в body
 
     element.append(node)
+
+    if (document.body.classList.contains('is-modal-open')) {
+      document.body.querySelector('.modal__body').append.node
+    }
   }
 
   // createHTML(){
