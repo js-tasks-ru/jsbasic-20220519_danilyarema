@@ -8,7 +8,6 @@ export default class Modal {
   open(){
     this.tempest = this.createHTML()
     this.elem = createElement(this.tempest)
-    console.log(this.elem)
     const element = this.elem.querySelector('.modal__body');
     const buttonClose = this.elem.querySelector('.modal__close')
 
@@ -25,7 +24,6 @@ export default class Modal {
 
     let handlerESC = function(event){
       if (event.code == 'Escape') {
-        console.log('buttonevent')
 
         document.body.classList.remove(`is-modal-open`)
         const element = document.body.querySelector('.modal')
@@ -61,7 +59,6 @@ export default class Modal {
   }
 
   createHTML(){
-    console.log(this.modalBody)
     return `<div class="modal">
     <!--Прозрачная подложка перекрывающая интерфейс-->
     <div class="modal__overlay"></div>
