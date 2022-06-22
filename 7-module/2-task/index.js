@@ -26,13 +26,9 @@ export default class Modal {
   }
 
   open(){
-   
     const buttonClose = this.template.querySelector('.modal__close')
-
     document.body.classList.add(`is-modal-open`)
- 
     buttonClose.addEventListener('click', (event) => this.close())
-
 
     let handlerESC = function(event){
       if (event.code == 'Escape') {
@@ -48,8 +44,7 @@ export default class Modal {
       }
     }
 
-    document.body.addEventListener('keydown', handlerESC) 
-    
+    document.body.addEventListener('keydown', handlerESC)   
     return document.body.append(this.template)
   }
 
@@ -83,31 +78,5 @@ export default class Modal {
       document.body.querySelector('.modal__body').append.node
     }
   }
-
-  // createHTML(){
-  //   return `<div class="modal">
-  //   <!--Прозрачная подложка перекрывающая интерфейс-->
-  //   <div class="modal__overlay"></div>
-
-  //   <div class="modal__inner">
-  //     <div class="modal__header">
-  //       <!--Кнопка закрытия модального окна-->
-  //       <button type="button" class="modal__close">
-  //         <img src="/assets/images/icons/cross-icon.svg" alt="close-icon" />
-  //       </button>
-
-  //       <h3 class="modal__title">
-  //         ${this.modalTitle}
-  //       </h3>
-  //     </div>
-
-  //     <div class="modal__body">
-  //     </div>
-  //   </div>
-
-  // </div>`
-  // }
-  
- 
 
 }
