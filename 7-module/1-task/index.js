@@ -91,4 +91,4 @@ export default class RibbonMenu {
         left.classList.add('ribbon__arrow_visible')
      }
    }
-}
+  }
