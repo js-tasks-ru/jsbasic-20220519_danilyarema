@@ -58,9 +58,9 @@ export default class Modal {
   }
 
   setTitle(modalTitle){
-    this.template.querySelector('.modal__title').innerHTML = `\n ${modalTitle} \n`
+    this.template.querySelector('.modal__title').textContent = modalTitle
     if (document.body.classList.contains('is-modal-open')) {
-      document.body.querySelector('.modal__title').innerHTML = `\n ${modalTitle} \n`
+      document.body.querySelector('.modal__title').textContent = {modalTitle}
     }
     //console.log(this.template.querySelector('.modal__title').innerHTML)
   }
