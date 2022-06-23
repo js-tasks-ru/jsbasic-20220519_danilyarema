@@ -49,7 +49,7 @@ export default class StepSlider {
 
       if (value != sliderValue.textContent) {
         this.elem.dispatchEvent(new CustomEvent('slider-change', {
-          detail: this.value,
+          detail: value,
           bubbles: true
         }))
         this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
