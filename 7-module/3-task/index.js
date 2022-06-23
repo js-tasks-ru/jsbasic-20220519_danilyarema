@@ -6,15 +6,16 @@ export default class StepSlider {
     <div class="slider">
   
       <!--Ползунок слайдера с активным значением-->
-      <div class="slider__thumb" style="left: 50%;">
-        <span class="slider__value">2</span>
+      <div class="slider__thumb" style="left: 0%;">
+        <span class="slider__value">0</span>
       </div>
   
       <!--Заполненная часть слайдера-->
-      <div class="slider__progress" style="width: 50%;"></div>
+      <div class="slider__progress" style="width: 0%;"></div>
   
       <!--Шаги слайдера-->
       <div class="slider__steps">
+      <span data-id="0" class="slider__step-active"></span>
       </div>
     </div>`)
     this.steps = steps
@@ -26,11 +27,11 @@ export default class StepSlider {
     const stepsPlace = this.template.querySelector('.slider__steps')
     let sliderStep = ``
 
-      for(let i = this.steps; i > 0; i--) {
-        sliderStep = sliderStep + `<span></span>`
+      for(let i = 1; i < this.steps; i++) {
+        sliderStep = sliderStep + `<span data-id='${i}'></span>`
       }
     
-    stepsPlace.insertAdjacentHTML('afterbegin',sliderStep)
+    stepsPlace.insertAdjacentHTML('beforeend',sliderStep)
     //console.log(stepsPlace.innerHTML)
     
     this.template.addEventListener('click',(event) => {
@@ -52,6 +53,9 @@ export default class StepSlider {
           bubbles: true
         }))
       }
+
+      
+      //console.log(stepsPlace.childNodes[value])
 
       let leftPercents = valuePercents; // Значение в процентах от 0 до 100
 
