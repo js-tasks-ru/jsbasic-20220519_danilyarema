@@ -52,10 +52,12 @@ export default class StepSlider {
           detail: this.value,
           bubbles: true
         }))
+        this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
+        stepsPlace.children[value].classList.add('slider__step-active')
       }
 
       
-      //console.log(stepsPlace.childNodes[value])
+      //console.log(stepsPlace.children[value])
 
       let leftPercents = valuePercents; // Значение в процентах от 0 до 100
 
