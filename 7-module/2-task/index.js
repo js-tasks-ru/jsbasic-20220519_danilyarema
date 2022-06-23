@@ -51,10 +51,11 @@ export default class Modal {
   close() {
     document.body.classList.remove(`is-modal-open`)
     const element = document.body.querySelector('.modal')
-    while (element.firstChild) {
-      element.removeChild(element.firstChild);
-    } //удаление всего в modal
-    document.body.removeChild(element)
+    //while (element.firstChild) {
+    //  element.removeChild(element.firstChild);
+    //} //удаление всего в modal
+    //document.body.removeChild(element)
+    element.remove()
   }
 
   setTitle(modalTitle){
