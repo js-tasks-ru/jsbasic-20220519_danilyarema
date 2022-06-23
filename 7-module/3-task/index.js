@@ -57,8 +57,6 @@ export default class StepSlider {
       }
 
       
-      //console.log(stepsPlace.children[value])
-
       let leftPercents = valuePercents; // Значение в процентах от 0 до 100
 
       thumb.style.left = `${leftPercents}%`;
