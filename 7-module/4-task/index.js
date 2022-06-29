@@ -45,7 +45,7 @@ export default class StepSlider {
       
         const onMove = (event) => {  
           // transform: translate(x, y) - можно еще так
-
+      this.elem.classList.add(`slider_dragging`)
       let left = event.clientX - this.elem.getBoundingClientRect().left;
       let leftRelative = left / this.elem.offsetWidth;
 
@@ -68,6 +68,7 @@ export default class StepSlider {
           detail: value,
           bubbles: true
         }))
+        
         this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
         stepsPlace.children[value].classList.add('slider__step-active')
       }
@@ -82,6 +83,7 @@ export default class StepSlider {
           document.addEventListener('pointermove', onMove);
   
           document.addEventListener('pointerup', () => {
+            this.elem.classList.remove(`slider_dragging`)
             document.removeEventListener('pointermove', onMove)
           }, { once: true })
         
