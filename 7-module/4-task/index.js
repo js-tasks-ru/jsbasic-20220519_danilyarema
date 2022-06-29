@@ -34,11 +34,66 @@ export default class StepSlider {
     stepsPlace.insertAdjacentHTML('beforeend',sliderStep)
     //console.log(stepsPlace.innerHTML)
     
-    this.template.addEventListener('click',(event) => {
-      let thumb = this.elem.querySelector('.slider__thumb');
-      let progress = this.elem.querySelector('.slider__progress');
-      let sliderValue = this.elem.querySelector('.slider__value');
+    const thumb = this.template.querySelector('.slider__thumb');
+    const progress = this.template.querySelector('.slider__progress');
+    const sliderValue = this.template.querySelector('.slider__value');
 
+//смещение по drag-and-drop
+    thumb.ondragstart = () => false
+
+    thumb.addEventListener('pointerdown',(event) => {
+      
+        const onMove = (event) => {  
+          // transform: translate(x, y) - можно еще так
+
+      let left = event.clientX - this.elem.getBoundingClientRect().left;
+      let leftRelative = left / this.elem.offsetWidth;
+
+      if (leftRelative < 0) {
+        leftRelative = 0;
+      }
+      
+      if (leftRelative > 1) {
+        leftRelative = 1;
+      }
+
+      let segments = this.steps - 1;
+      let approximateValue = leftRelative * segments;
+      let value = Math.round(approximateValue);
+
+      let valuePercents = leftRelative * 100;//value / segments * 100;
+
+      if (value != sliderValue.textContent) {
+        this.elem.dispatchEvent(new CustomEvent('slider-change', {
+          detail: value,
+          bubbles: true
+        }))
+        this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
+        stepsPlace.children[value].classList.add('slider__step-active')
+      }
+
+      
+      let leftPercents = valuePercents; // Значение в процентах от 0 до 100
+
+      thumb.style.left = `${leftPercents}%`;
+      progress.style.width = `${leftPercents}%`;
+      sliderValue.textContent = value;
+        }
+          document.addEventListener('pointermove', onMove);
+  
+          document.addEventListener('pointerup', () => {
+            document.removeEventListener('pointermove', onMove)
+          }, { once: true })
+        
+
+      }  )
+
+//Смещение по клику
+    this.template.addEventListener('click',(event) => {
+      const progress = this.elem.querySelector('.slider__progress');
+      const sliderValue = this.elem.querySelector('.slider__value');
+
+    
       let left = event.clientX - this.elem.getBoundingClientRect().left;
       let leftRelative = left / this.elem.offsetWidth;
 
@@ -64,6 +119,10 @@ export default class StepSlider {
       sliderValue.textContent = value;
 
     })
+
+
+
+
 
     return this.template
   }
