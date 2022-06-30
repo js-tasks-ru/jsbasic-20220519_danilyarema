@@ -64,15 +64,15 @@ export default class StepSlider {
       let valuePercents = leftRelative * 100;//value / segments * 100;
      
 
-      // if (value != sliderValue.textContent) {
-      //   this.elem.dispatchEvent(new CustomEvent('slider-change', {
-      //     detail: value,
-      //     bubbles: false
-      //   }))
+      if (value != sliderValue.textContent) {
+        this.elem.dispatchEvent(new CustomEvent('slider-change', {
+          detail: value,
+          bubbles: false
+        }))
         
-      //   this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
-      //   stepsPlace.children[value].classList.add('slider__step-active')
-      // }
+        this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
+        stepsPlace.children[value].classList.add('slider__step-active')
+      }
 
 
       let leftPercents = valuePercents; // Значение в процентах от 0 до 100
@@ -95,7 +95,7 @@ export default class StepSlider {
 
             
               this.elem.dispatchEvent(new CustomEvent('slider-change', {
-                detail: sliderValue.textContent,
+                detail: +sliderValue.textContent,
                 bubbles: true
               }))
               
