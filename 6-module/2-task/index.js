@@ -5,9 +5,6 @@ export default class ProductCard {
     this.elem = createDOM(product)
     this.product = product
   }
-
-
-
 }
 function createDOM(elemObj){
     let DOM = createElement(
