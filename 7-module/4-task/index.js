@@ -80,10 +80,17 @@ export default class StepSlider {
       progress.style.width = `${leftPercents}%`;
       sliderValue.textContent = value;
         }
+
+
           document.addEventListener('pointermove', onMove);
-  
+  //поднятие мыши
           document.addEventListener('pointerup', () => {
             this.elem.classList.remove(`slider_dragging`)
+            console.log(sliderValue)
+            thumb.style.left = `${sliderValue.textContent * 25}%`;
+            progress.style.width = `${sliderValue.textContent * 25}%`;
+
+
             document.removeEventListener('pointermove', onMove)
           }, { once: true })
         
@@ -121,11 +128,6 @@ export default class StepSlider {
       sliderValue.textContent = value;
 
     })
-
-
-
-
-
     return this.template
   }
   
