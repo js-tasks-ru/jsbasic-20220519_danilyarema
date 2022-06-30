@@ -62,18 +62,19 @@ export default class StepSlider {
       let value = Math.round(approximateValue);
 
       let valuePercents = leftRelative * 100;//value / segments * 100;
+     
 
-      if (value != sliderValue.textContent) {
-        this.elem.dispatchEvent(new CustomEvent('slider-change', {
-          detail: value,
-          bubbles: true
-        }))
+      // if (value != sliderValue.textContent) {
+      //   this.elem.dispatchEvent(new CustomEvent('slider-change', {
+      //     detail: value,
+      //     bubbles: false
+      //   }))
         
-        this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
-        stepsPlace.children[value].classList.add('slider__step-active')
-      }
+      //   this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
+      //   stepsPlace.children[value].classList.add('slider__step-active')
+      // }
 
-      
+
       let leftPercents = valuePercents; // Значение в процентах от 0 до 100
 
       thumb.style.left = `${leftPercents}%`;
@@ -86,10 +87,21 @@ export default class StepSlider {
   //поднятие мыши
           document.addEventListener('pointerup', () => {
             this.elem.classList.remove(`slider_dragging`)
-            console.log(sliderValue)
+            //console.log(sliderValue)
             thumb.style.left = `${sliderValue.textContent * 25}%`;
             progress.style.width = `${sliderValue.textContent * 25}%`;
 
+            
+
+            
+              this.elem.dispatchEvent(new CustomEvent('slider-change', {
+                detail: sliderValue.textContent,
+                bubbles: true
+              }))
+              
+              this.elem.querySelector('.slider__step-active').classList.remove('slider__step-active')
+              stepsPlace.children[sliderValue.textContent].classList.add('slider__step-active')
+            
 
             document.removeEventListener('pointermove', onMove)
           }, { once: true })
