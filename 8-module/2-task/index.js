@@ -11,7 +11,7 @@ export default class ProductGrid {
                         </div>
                     </div>`
     this.elem = this.render(this.products);
-    
+    this.legacyFilters = {};
   }
 
   render(products) {
@@ -27,6 +27,7 @@ export default class ProductGrid {
   }
 
   updateFilter(filters) {
+    Object.assign(this.filters,filters)
     this.elem.innerHTML = ''
 
     let innerPush = createElement(this.template)
@@ -35,10 +36,10 @@ export default class ProductGrid {
 
     for (let product of this.products) {
 
-      if (product.nuts !== null && filters.noNuts !== null && product.nuts == true && filters.noNuts == true ||
-          product.vegeterian !== null && filters.vegeterianOnly !== null && !product.vegeterian && filters.vegeterianOnly == true ||
-          product.spiciness !== null && filters.spiciness !== null && product.spiciness > filters.maxSpiciness ||
-          product.category !== null && filters.category !== null && product.category !== filters.category && filters.category !== '' && filters.category !== undefined) 
+      if (product.nuts !== null && this.filters.noNuts !== null && product.nuts == true && this.filters.noNuts == true ||
+          product.vegeterian !== null && this.filters.vegeterianOnly !== null && !product.vegeterian && this.filters.vegeterianOnly == true ||
+          product.spiciness !== null && this.filters.spiciness !== null && product.spiciness > this.filters.maxSpiciness ||
+          product.category !== null && this.filters.category !== null && product.category !== this.filters.category && this.filters.category !== '' && filters.category !== undefined) 
           {
             //console.log(product.category !== filters.category, filters.category !== null, product.category !== null)
             continue
