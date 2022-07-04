@@ -40,39 +40,79 @@ export default class CartIcon {
 
   updatePosition() {
     
-      this.elem.style.position = 'fixed'
-      let leftIndent = Math.min(
-        document.querySelector('.container').getBoundingClientRect().right + 20,
+//       this.elem.style.position = 'fixed'
+//       let leftIndent = Math.min(
+//         document.querySelector('.container').getBoundingClientRect().right + 20,
+//         document.documentElement.clientWidth - this.elem.offsetWidth - 10
+//       ) + 'px'
+
+//     if (window.pageYOffset > this.initialTopCoord) {
+
+//       Object.assign(this.elem.style, {
+//         position: 'fixed',
+//         top: '50px',
+//         zIndex: 1e3,
+//         right: '10px',
+//         left: leftIndent
+
+//       });
+//     } else {
+
+//       Object.assign(this.elem.style, {
+//         position: '',
+//         top: '',
+//         left: '',
+//         zIndex: ''
+//       });
+//     }
+
+//     if (document.documentElement.clientWidth <= 767) {
+//     Object.assign(this.elem.style, {
+//     position: '',
+//     top: '',
+//     left: '',
+//     zIndex: ''
+//   });
+//   }
+// }
+let leftIndent =
+      Math.min(
+        document.querySelector(".container")?.getBoundingClientRect?.()?.right +
+          20,
         document.documentElement.clientWidth - this.elem.offsetWidth - 10
-      ) + 'px'
+      ) + "px";
+    let initialTopCoord =
+      this.elem.getBoundingClientRect().top + window.pageYOffset;
 
-    if (window.pageYOffset > this.initialTopCoord) {
-      
+    function isHidden(elem) {
+      return !this.elem.offsetWidth && !this.elem.offsetHeight;
+    }
+
+    if (window.pageYOffset > initialTopCoord) {
       Object.assign(this.elem.style, {
-        position: 'fixed',
-        top: '50px',
+        position: "fixed",
+        top: "50px",
         zIndex: 1e3,
-        right: '10px',
-        left: leftIndent
-
+        right: "10px",
+        left: leftIndent,
       });
-    } else {
-
+    } else if (window.pageYOffset === 0) {
       Object.assign(this.elem.style, {
-        position: '',
-        top: '',
-        left: '',
-        zIndex: ''
+        position: "",
+        top: "",
+        left: "",
+        zIndex: "",
       });
     }
 
-    if (document.documentElement.clientWidth <= 767) {
-    Object.assign(this.elem.style, {
-    position: '',
-    top: '',
-    left: '',
-    zIndex: ''
-  });
+    let isMobile = document.documentElement.clientWidth <= 767;
+    if (isMobile) {
+      Object.assign(this.elem.style, {
+        position: "",
+        top: "",
+        left: "",
+        zIndex: "",
+      });
+    }
   }
-}
 }
