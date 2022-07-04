@@ -28,7 +28,7 @@ export default class ProductGrid {
 
   updateFilter(filters) {
     this.filters = Object.assign(this.filters,filters)
-    console.log(this.filters)
+    //console.log(this.filters)
     this.elem.innerHTML = ''
 
     let innerPush = createElement(this.template)
