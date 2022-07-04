@@ -47,6 +47,7 @@ export default class CartIcon {
       ) + 'px'
 
     if (window.pageYOffset > this.initialTopCoord) {
+      
       Object.assign(this.elem.style, {
         position: 'fixed',
         top: '50px',
@@ -56,8 +57,6 @@ export default class CartIcon {
 
       });
     } else {
-
-      this.elem.style.position = 'absolute'
 
       Object.assign(this.elem.style, {
         position: '',
