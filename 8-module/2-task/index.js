@@ -40,7 +40,7 @@ export default class ProductGrid {
           product.spiciness !== null && filters.spiciness !== null && product.spiciness > filters.maxSpiciness ||
           product.category !== null && filters.category !== null && product.category !== filters.category && filters.category !== '' && filters.category !== undefined) 
           {
-            console.log(product.category !== filters.category, filters.category !== null, product.category !== null)
+            //console.log(product.category !== filters.category, filters.category !== null, product.category !== null)
             continue
             
     }
@@ -48,11 +48,11 @@ export default class ProductGrid {
     {
       product = new ProductCard(product)
       place.append(product.elem)
-      console.log('1')
+      //console.log('1')
     }
   }
   document.body.querySelector('.products-grid').append(place)
-  console.log(document.body.querySelectorAll('.card').length)
-  console.log(filters)
+  //console.log(document.body.querySelectorAll('.card').length)
+  //console.log(filters)
 }
 }
