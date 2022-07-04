@@ -27,7 +27,8 @@ export default class ProductGrid {
   }
 
   updateFilter(filters) {
-    Object.assign(this.filters,filters)
+    this.filters = Object.assign(this.filters,filters)
+    console.log(this.filters)
     this.elem.innerHTML = ''
 
     let innerPush = createElement(this.template)
@@ -39,7 +40,7 @@ export default class ProductGrid {
       if (product.nuts !== null && this.filters.noNuts !== null && product.nuts == true && this.filters.noNuts == true ||
           product.vegeterian !== null && this.filters.vegeterianOnly !== null && !product.vegeterian && this.filters.vegeterianOnly == true ||
           product.spiciness !== null && this.filters.spiciness !== null && product.spiciness > this.filters.maxSpiciness ||
-          product.category !== null && this.filters.category !== null && product.category !== this.filters.category && this.filters.category !== '' && filters.category !== undefined) 
+          product.category !== null && this.filters.category !== null && product.category !== this.filters.category && this.filters.category !== '' && this.filters.category !== undefined) 
           {
             //console.log(product.category !== filters.category, filters.category !== null, product.category !== null)
             continue
