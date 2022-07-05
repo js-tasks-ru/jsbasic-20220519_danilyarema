@@ -3,7 +3,7 @@ import createElement from '../../assets/lib/create-element.js';
 export default class CartIcon {
   constructor() {
     this.render();
-    this.initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
+    //this.initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
     this.addEventListeners();
   }
 
@@ -83,10 +83,6 @@ let leftIndent =
       ) + "px";
     let initialTopCoord =
       this.elem.getBoundingClientRect().top + window.pageYOffset;
-
-    function isHidden(elem) {
-      return !this.elem.offsetWidth && !this.elem.offsetHeight;
-    }
 
     if (window.pageYOffset > initialTopCoord) {
       Object.assign(this.elem.style, {
