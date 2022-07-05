@@ -144,8 +144,7 @@ export default class Cart {
       })
     }
     
-    model = this.modal
-  
+    this.modal = model
   }
 
   onProductUpdate(cartItem) {
@@ -153,6 +152,11 @@ export default class Cart {
     const isModalOpen = document.body.classList.contains('is-modal-open')
 
     if (!isModalOpen) return
+
+    if (this.getTotalCount() == 0) {
+      this.modal.close();
+      return;
+    }
      
     let productId = cartItem.product.id; // Уникальный идентификатора товара (для примера)
     let modalBody = document.body.querySelector('.cart__body')
@@ -186,8 +190,8 @@ export default class Cart {
         this.modal.setTitle("Success!");
 
         this.cartItems = this.cartItems.filter((x) => x.length < 0);
-
-        this.modal.elem.querySelector(".modal__body").innerHTML = `
+        
+        document.body.querySelector(".modal__body").innerHTML = `
           <div class="modal__body-inner">
             <p>
               Order successful! Your order is being cooked :) <br>
@@ -195,7 +199,8 @@ export default class Cart {
               <img src="/assets/images/delivery.gif">
             </p>
           </div>
-        `;
+        `
+        ;
       })
       .catch((e) => {});
   
